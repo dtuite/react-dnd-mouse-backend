@@ -93,8 +93,11 @@ export default class MouseBackend {
 
     const handleMoveStart =
       this.handleMoveStart.bind(this, sourceId)
-    node.addEventListener('mousedown',
-      handleMoveStart)
+    node.addEventListener('mousedown' (e) => {
+      // https://stackoverflow.com/a/9510620
+      e.preventDefault();
+      handleMoveStart();
+    });
 
     return () => {
       delete this.sourceNodes[sourceId]
